@@ -35,7 +35,7 @@ userSchema.pre("save", async function (next) {
 });
 
 userSchema.statics.isUserExistsByEmail = async function (email: string) {
-  return await User.findOne({ email }).select("+password");
+  return await UserModel.findOne({ email }).select("+password");
 };
 userSchema.statics.isPassWordMatched = async function (
   plainTextPassword,
@@ -44,4 +44,4 @@ userSchema.statics.isPassWordMatched = async function (
   return await bcrypt.compare(plainTextPassword, hashedPassword);
 };
 
-export const User = model<TUser, IUserModel>("User", userSchema);
+export const UserModel = model<TUser, IUserModel>("User", userSchema);

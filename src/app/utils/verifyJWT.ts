@@ -12,21 +12,13 @@ export const USER_STATUS = {
   BLOCKED: 'BLOCKED',
 } as const;
 
-// _id: user._id,
-//     name: user.name,
-//     email: user.email,
-//     mobileNumber: user.mobileNumber,
-//     role: user.role,
-//     status: user.status,
-
 export const createToken = (
   jwtPayload: {
     _id?: string;
     name: string;
     email: string;
-    mobileNumber?: string;
+    phoneNumber?: string;
     role: keyof typeof USER_ROLE;
-    status: keyof typeof USER_STATUS;
   },
   secret: string,
   expiresIn: string
