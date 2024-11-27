@@ -21,7 +21,7 @@ const registerUser = async (payload: TRegisterUser) => {
     phoneNumber: newUser.phoneNumber,
     role: newUser.role,
   };
-  const accesstoken = createToken(
+  const accessToken = createToken(
     jwtPayload,
     config.jwt_access_secret as string,
     config.jwt_access_expires_in as string
@@ -32,7 +32,7 @@ const registerUser = async (payload: TRegisterUser) => {
     config.jwt_refresh_expires_in!
   );
   return {
-    accesstoken,
+    accessToken,
     refreshToken,
   };
 };
@@ -55,7 +55,7 @@ const loginUser = async (payload: TLoginUser) => {
     phoneNumber: user.phoneNumber,
     role: user.role,
   };
-  const accesstoken = createToken(
+  const accessToken = createToken(
     jwtPayload,
     config.jwt_access_secret as string,
     config.jwt_access_expires_in as string
@@ -66,7 +66,7 @@ const loginUser = async (payload: TLoginUser) => {
     config.jwt_refresh_expires_in!
   );
   return {
-    accesstoken,
+    accessToken,
     refreshToken,
   };
 };
@@ -100,7 +100,7 @@ const refreshToken = async (token: string) => {
     accessToken,
   };
 };
-export const authController = {
+export const authServices = {
   registerUser,
   loginUser,
   refreshToken,
