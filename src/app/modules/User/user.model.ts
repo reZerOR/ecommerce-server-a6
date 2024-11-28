@@ -19,6 +19,7 @@ const userSchema = new Schema<TUser, IUserModel>(
       unique: true,
     },
     password: { type: String, required: true, select: 0 },
+    isDeleted: { type: Boolean, default: false },
     phoneNumber: { type: String, required: true },
   },
   {
