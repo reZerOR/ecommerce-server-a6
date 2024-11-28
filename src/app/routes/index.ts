@@ -3,13 +3,14 @@ import { userRoutes } from "../modules/User/user.routes";
 import { AuthRoutes } from "../modules/Auth/auth.routes";
 import { CategoryRoutes } from "../modules/Category/category.routes";
 
+
 const router = Router();
 const moduleRoutes: {
   path: string;
   route: Router;
 }[] = [
   {
-    path: "/users",
+    path: "/user",
     route: userRoutes,
   },
   {
@@ -17,7 +18,7 @@ const moduleRoutes: {
     route: AuthRoutes,
   },
   {
-    path: "category",
+    path: "/category",
     route: CategoryRoutes,
   },
 ];

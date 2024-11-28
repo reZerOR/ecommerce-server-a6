@@ -6,7 +6,7 @@ export interface TUser {
   _id?: string;
   password: string;
   role: keyof typeof USER_ROLE;
-  isDeleted: boolean;
+  isDeleted?: boolean;
   name: string;
   email: string;
   phoneNumber: string;

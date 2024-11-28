@@ -1,11 +1,11 @@
-import express from "express";
 import auth from "../../middlewares/auth";
 import { USER_ROLE } from "../User/user.constant";
 import validateRequest from "../../middlewares/validateRequest";
 import { categoryControllers } from "./category.controller";
 import { CategoryValidation } from "./category.validation";
+import { Router } from "express";
 
-const router = express.Router();
+const router = Router();
 
 router.get("/", categoryControllers.getAllCategory);
 
