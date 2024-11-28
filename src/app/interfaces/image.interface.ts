@@ -1,6 +1,6 @@
-import { Express } from 'express';
+// import { Express } from 'express';
 
-export type TImageFiles = { [fieldname: string]: Express.Multer.File[] };
+// export type TImageFiles = { [fieldname: string]: Express.Multer.File[] };
 
 export type TImageFile = {
     fieldname: string;
