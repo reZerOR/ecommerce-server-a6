@@ -3,6 +3,8 @@ import { userRoutes } from "../modules/User/user.routes";
 import { AuthRoutes } from "../modules/Auth/auth.routes";
 import { CategoryRoutes } from "../modules/Category/category.routes";
 import { ItemRoutes } from "../modules/Item/item.routes";
+import { orderRoutes } from "../modules/Order/order.routes";
+import { paymentRoute } from "../modules/payment/payment.route";
 
 const router = Router();
 const moduleRoutes: {
@@ -24,6 +26,14 @@ const moduleRoutes: {
   {
     path: "/item",
     route: ItemRoutes,
+  },
+  {
+    path: "/order",
+    route: orderRoutes,
+  },
+  {
+    path: "/payment",
+    route: paymentRoute,
   },
 ];
 
