@@ -1,7 +1,24 @@
+import ItemModel from "../Item/item.model";
 import OrderModel from "../Order/order.model";
 import { verifyPayment } from "./payment.utils";
+const restoreItemQuantities = async (orderId: string) => {
+  const order = await OrderModel.findById(orderId);
+
+  if (!order) return;
+
+  for (const orderItem of order.items) {
+    await ItemModel.findByIdAndUpdate(orderItem.item, {
+      $inc: { quantity: orderItem.quantity },
+    });
+  }
+};
+
 const deleteBooking = async (orderId: string) => {
-  await OrderModel.findByIdAndDelete(orderId);
+  await restoreItemQuantities(orderId);
+  await OrderModel.findByIdAndUpdate(orderId, {
+    status: "cancelled",
+    paymentStatus: "failed",
+  });
 };
 
 const confirmationService = async (

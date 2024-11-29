@@ -65,6 +65,75 @@ const createOrder = async (
   session.endSession();
   return paymentProcess;
 };
+
+const getAllOrder = async () => {
+  const result = await OrderModel.find()
+    .populate({
+      path: "user",
+      select: "name email phoneNumber",
+    })
+    .populate({
+      path: "items.item",
+      populate: {
+        path: "category",
+        select: "name",
+      },
+    });
+  return result;
+};
+
+const getOrderById = async (id: string) => {
+  const result = await OrderModel.findById(id)
+    .populate({
+      path: "user",
+      select: "name email phoneNumber",
+    })
+    .populate({
+      path: "items.item",
+      populate: {
+        path: "category",
+        select: "name",
+      },
+    });
+  return result;
+};
+
+const getUsersOrder = async (userId: string) => {
+  const result = await OrderModel.find({ user: userId }).populate({
+    path: "items.item",
+    populate: {
+      path: "category",
+      select: "name",
+    },
+  });
+  return result;
+};
+
+const getUserOrderById = async (userId: string, id: string) => {
+  const result = await OrderModel.find({ user: userId, _id: id }).populate({
+    path: "items.item",
+    populate: {
+      path: "category",
+      select: "name",
+    },
+  });
+  return result;
+};
+const cancelOrder = async (id: string) => {
+  const result = await OrderModel.findByIdAndUpdate(
+    id,
+    {
+      status: "cancelled",
+    },
+    { new: true }
+  );
+  return result;
+};
 export const orderServices = {
   createOrder,
+  getAllOrder,
+  getOrderById,
+  getUserOrderById,
+  getUsersOrder,
+  cancelOrder,
 };
