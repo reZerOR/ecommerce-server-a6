@@ -16,7 +16,50 @@ const createItem = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const getAllItem = catchAsync(async (req, res) => {
+  const result = await itemServices.getAllItem(req.query);
+  sendResponse(res, {
+    success: true,
+    statusCode: Status.OK,
+    message: "Item retrived successfully",
+    data: result,
+  });
+});
+const getItemById = catchAsync(async (req, res) => {
+  const result = await itemServices.getItemById(req.params.id as string);
+  sendResponse(res, {
+    success: true,
+    statusCode: Status.OK,
+    message: "Item retrived successfully",
+    data: result,
+  });
+});
+const upadateItem = catchAsync(async (req, res) => {
+  const result = await itemServices.updateItem(
+    req.params.id as string,
+    req.body
+  );
+  sendResponse(res, {
+    success: true,
+    statusCode: Status.OK,
+    message: "Item updated successfully",
+    data: result,
+  });
+});
+const deleteItem = catchAsync(async (req, res) => {
+  const result = await itemServices.deleteItem(req.params.id);
+  sendResponse(res, {
+    success: true,
+    statusCode: Status.OK,
+    message: "Item retrived successfully",
+    data: result,
+  });
+});
 
 export const itemController = {
   createItem,
+  getAllItem,
+  getItemById,
+  upadateItem,
+  deleteItem,
 };

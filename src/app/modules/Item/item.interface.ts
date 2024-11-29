@@ -9,4 +9,5 @@ export type TItem = {
   category: ObjectId;
   createdAt?: Date;
   updatedAt?: Date;
+  isDeleted?:boolean
 };

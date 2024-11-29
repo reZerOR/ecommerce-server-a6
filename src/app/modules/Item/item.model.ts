@@ -31,6 +31,10 @@ const itemSchema = new Schema<TItem>(
       ref: "Category",
       required: true,
     },
+    isDeleted: {
+      type: Boolean,
+      default: false
+    }
   },
   {
     timestamps: true,
