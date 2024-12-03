@@ -25,10 +25,23 @@ const userHardDelete = async (id: string) => {
   const result = await UserModel.findByIdAndDelete(id);
   return result;
 };
+const getUserByid = async (id: string) => {
+  const result = await UserModel.findById(id).select("-password");
+  return result;
+};
+const userUpdate = async (
+  id: string,
+  payload: Pick<TUser, "name" | "phoneNumber" | "role">
+) => {
+  const result = await UserModel.findByIdAndUpdate(id, payload, { new: true });
+  return result;
+};
 
 export const UserServices = {
   createUser,
   getUserAll,
   userHardDelete,
   userSoftDelete,
+  getUserByid,
+  userUpdate,
 };

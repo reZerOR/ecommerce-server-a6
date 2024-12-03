@@ -9,7 +9,7 @@ const createCategory = async (payload: TCategory) => {
 };
 
 const getAllCategory = async () => {
-  const result = await CategoryModel.find();
+  const result = await CategoryModel.find({isDeleted: false});
   return result;
 };
 

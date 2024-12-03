@@ -39,9 +39,29 @@ const userHardDelete = catchAsync(async (req, res) => {
     success: true,
   });
 });
+const getUserById = catchAsync(async (req, res) => {
+  const user = await UserServices.getUserByid(req.params.id);
+  sendResponse(res, {
+    message: "User found successFully",
+    data: user,
+    statusCode: Status.OK,
+    success: true,
+  });
+});
+const updateUserById = catchAsync(async (req, res) => {
+  const user = await UserServices.userUpdate(req.params.id, req.body);
+  sendResponse(res, {
+    message: "User updated successFully",
+    data: user,
+    statusCode: Status.OK,
+    success: true,
+  });
+});
 export const UserController = {
   createUser,
   getUserAll,
   userHardDelete,
   userSoftDelete,
+  getUserById,
+  updateUserById,
 };
