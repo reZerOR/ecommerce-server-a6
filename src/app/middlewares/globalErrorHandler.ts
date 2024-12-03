@@ -9,7 +9,6 @@ import handleValidationError from "../errors/handleValidationError";
 import handleZodError from "../errors/handleZodError";
 import handleDuplicateError from "../errors/handlerDuplicateError";
 import { TErrorSources } from "../interfaces/error.interface";
-import { TImageFiles } from "../interfaces/image.interface";
 // import { deleteImageFromCloudinary } from "../utils/deleteImage";
 
 const globalErrorHandler: ErrorRequestHandler = async (err, req, res, next) => {
@@ -23,9 +22,9 @@ const globalErrorHandler: ErrorRequestHandler = async (err, req, res, next) => {
     },
   ];
 
-//   if (req.files && Object.keys(req.files).length > 0) {
-//     await deleteImageFromCloudinary(req.files as TImageFiles);
-//   }
+  //   if (req.files && Object.keys(req.files).length > 0) {
+  //     await deleteImageFromCloudinary(req.files as TImageFiles);
+  //   }
 
   if (err instanceof ZodError) {
     const simplifiedError = handleZodError(err);
@@ -71,7 +70,7 @@ const globalErrorHandler: ErrorRequestHandler = async (err, req, res, next) => {
     success: false,
     message,
     errorSources,
-    err,
+    statusCode,
     stack: config.node_dev === "development" ? err?.stack : null,
   });
 };

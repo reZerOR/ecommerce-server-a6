@@ -27,7 +27,7 @@ const updateUserValidationSchema = z.object({
     role: z.nativeEnum(USER_ROLE).optional(),
     email: z.string().email().optional(),
     password: z.string().optional(),
-    mobileNumber: z.string().optional(),
+    phoneNumber: z.string().optional(),
   }),
 });
 
