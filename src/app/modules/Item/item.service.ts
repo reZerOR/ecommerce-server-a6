@@ -10,6 +10,9 @@ import AppError from "../../errors/AppError";
 import { Status } from "better-status-codes";
 
 const createIItem = async (payload: TItem, image: TImageFile) => {
+  if (!image) {
+    throw new AppError(Status.BAD_REQUEST, "Image is not provided");
+  }
   const uploadToCloudinary = await fileUploader.uploadToCloudinary(image);
   payload.image = uploadToCloudinary?.secure_url;
   const result = await ItemModel.create(payload);
@@ -63,13 +66,17 @@ const getItemById = async (id: string) => {
   const result = await ItemModel.findOne({ _id: id, isDeleted: false });
   return result;
 };
-const updateItem = async (id: string, payload: TItem) => {
+const updateItem = async (id: string, payload: TItem, image: TImageFile) => {
   const isCategoryExists = await CategoryModel.findOne({
     _id: payload.category,
     isDeleted: false,
   });
   if (!isCategoryExists) {
     throw new AppError(Status.NOT_FOUND, "Category not found");
+  }
+  if (image) {
+    const uploadToCloudinary = await fileUploader.uploadToCloudinary(image);
+    payload.image = uploadToCloudinary?.secure_url;
   }
   const result = await ItemModel.findByIdAndUpdate(id, payload, { new: true });
   return result;

@@ -40,6 +40,9 @@ const fileFilter = (
   cb: multer.FileFilterCallback
 ) => {
   try {
+    if (!file) {
+      cb(null, true);
+    }
     // Validate mimetype
     if (!ACCEPTED_FILE_TYPES.includes(file.mimetype)) {
       cb(

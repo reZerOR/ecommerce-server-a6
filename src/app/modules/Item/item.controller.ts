@@ -37,7 +37,8 @@ const getItemById = catchAsync(async (req, res) => {
 const upadateItem = catchAsync(async (req, res) => {
   const result = await itemServices.updateItem(
     req.params.id as string,
-    req.body
+    req.body,
+    req.file!
   );
   sendResponse(res, {
     success: true,

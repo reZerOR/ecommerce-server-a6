@@ -22,6 +22,8 @@ router.get("/:id", itemController.getItemById);
 router.put(
   "/:id",
   auth(USER_ROLE.ADMIN),
+  fileUploader.upload.single("file"),
+  parseBody,
   validateRequest(ItemValidation.updateItemSchema),
   itemController.upadateItem
 );
