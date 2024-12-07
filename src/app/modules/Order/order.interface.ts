@@ -24,7 +24,7 @@ export type TOrder = {
   transactionId?: string;
   paymentStatus: "unpaid" | "paid" | "failed";
   shippingAddress: TOrderShippingAddress;
-  isDeleted: boolean;
+  isDeleted?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 };

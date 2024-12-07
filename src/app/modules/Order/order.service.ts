@@ -15,9 +15,6 @@ const createOrder = async (
   const session = await mongoose.startSession();
 
   session.startTransaction();
-  //   throw new AppError(Status[404], "hi 4040");
-  // const processedItems: TOrderItem[]=[]
-  // let totalPrice
   for (const orderItem of payload.items) {
     const item = await ItemModel.findById(orderItem.item);
     if (!item) {
