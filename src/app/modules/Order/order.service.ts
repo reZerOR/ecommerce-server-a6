@@ -126,6 +126,17 @@ const cancelOrder = async (id: string) => {
   );
   return result;
 };
+const updateOrder = async (
+  id: string,
+  status: "pending" | "processing" | "completed" | "cancelled"
+) => {
+  const result = await OrderModel.findByIdAndUpdate(
+    id,
+    { status },
+    { new: true }
+  );
+  return result;
+};
 export const orderServices = {
   createOrder,
   getAllOrder,
@@ -133,4 +144,5 @@ export const orderServices = {
   getUserOrderById,
   getUsersOrder,
   cancelOrder,
+  updateOrder,
 };

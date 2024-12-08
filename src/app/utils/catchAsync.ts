@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 
 export const catchAsync = (fn: RequestHandler) => {

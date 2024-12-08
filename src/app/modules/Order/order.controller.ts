@@ -56,6 +56,7 @@ const getUserOrderById = catchAsync(async (req, res) => {
     data: result,
   });
 });
+
 const cancelOrder = catchAsync(async (req, res) => {
   const result = await orderServices.cancelOrder(req.params.id);
   sendResponse(res, {
@@ -65,7 +66,15 @@ const cancelOrder = catchAsync(async (req, res) => {
     data: result,
   });
 });
-
+const updateUser = catchAsync(async (req, res) => {
+  const result = await orderServices.updateOrder(req.params.id, req.body);
+  sendResponse(res, {
+    success: true,
+    statusCode: Status[200],
+    message: "Order Canceled successfuly",
+    data: result,
+  });
+});
 export const orderController = {
   createOrder,
   getAllOrder,
@@ -73,4 +82,5 @@ export const orderController = {
   getUserOrderById,
   getUsersOrder,
   cancelOrder,
+  updateUser
 };

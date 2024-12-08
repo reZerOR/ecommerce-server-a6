@@ -8,9 +8,13 @@ import { Status } from "better-status-codes";
 import { Express } from "express";
 import { cloudinaryUpload } from "../config/cloudinery.config";
 import { UploadApiResponse } from "cloudinary";
+import config from "../config";
 
 // Create uploads directory if it doesn't exist
-const uploadsDir = path.join(process.cwd(), "uploads");
+const uploadsDir = path.join(
+  config.node_dev! === "production" ? "/tmp/uploads" : process.cwd(),
+  "uploads"
+);
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
