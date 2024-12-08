@@ -36,7 +36,7 @@ const getOrderById = catchAsync(async (req, res) => {
   });
 });
 const getUsersOrder = catchAsync(async (req, res) => {
-  const result = await orderServices.getUsersOrder(req.user.id);
+  const result = await orderServices.getUsersOrder(req.user._id);
   sendResponse(res, {
     success: true,
     statusCode: Status[200],

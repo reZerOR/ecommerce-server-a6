@@ -7,7 +7,7 @@ const ReviewSchema = new Schema<TReview>(
   {
     productId: { type: Schema.Types.ObjectId, ref: "Item", required: true },
     message: { type: String, required: true, trim: true },
-    urerId: {
+    userId: {
       type: Schema.Types.ObjectId, ref: 'User', required: true
     },
     rating: { type: Number, required: true, min: 1, max: 5 },

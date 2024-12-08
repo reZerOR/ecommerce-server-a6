@@ -14,13 +14,16 @@ const createReview = async (payload: TReview, user: TUser) => {
   if (!isUserHasOrder) {
     throw new AppError(Status.BAD_REQUEST, "You cant review this product");
   }
-  payload.urerId = user._id;
+  payload.userId = user._id;
   const result = await ReviewModel.create(payload);
   return result;
 };
 const getReviwByProductId = async (productId: string) => {
   const result = await ReviewModel.find({
     productId: productId,
+  }).populate({
+    path: 'userId',
+    select: 'name'
   });
   return result;
 };

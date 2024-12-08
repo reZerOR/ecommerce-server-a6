@@ -15,4 +15,4 @@ router.post(
 );
 router.get("/:id", reviewController.getReviewByProductid);
 
-export default router;
+export const reviewRoutes = router;

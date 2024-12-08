@@ -13,9 +13,9 @@ router.post(
   orderController.createOrder
 );
 router.get("/", auth(USER_ROLE.ADMIN), orderController.getAllOrder);
-router.get("/:id", auth(USER_ROLE.ADMIN), orderController.getOrderById);
+router.get("/user/:id", auth(USER_ROLE.ADMIN, USER_ROLE.USER), orderController.getOrderById);
 router.get(
-  "/",
+  "/user",
   auth(USER_ROLE.ADMIN, USER_ROLE.USER),
   orderController.getUsersOrder
 );
