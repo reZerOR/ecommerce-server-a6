@@ -6,7 +6,7 @@ import notFound from "./app/middlewares/notFound";
 import globalErrorHandler from "./app/middlewares/globalErrorHandler";
 import router from "./app/routes";
 const app: Application = express();
-app.use(cors());
+app.use(cors({ origin: ["http://localhost:3000", "https://playpal-eta.vercel.app"], credentials: true }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
