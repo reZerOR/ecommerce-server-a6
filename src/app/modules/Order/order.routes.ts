@@ -21,5 +21,5 @@ router.get(
 );
 router.get("/:id", auth(USER_ROLE.ADMIN), orderController.getUserOrderById);
 router.delete("/:id", auth(USER_ROLE.ADMIN), orderController.cancelOrder);
-router.put("/:id", auth(USER_ROLE.ADMIN), orderController.updateUser);
+router.put("/:id", auth(USER_ROLE.ADMIN), orderController.updateOrder);
 export const orderRoutes = router;

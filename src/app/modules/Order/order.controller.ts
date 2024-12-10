@@ -66,8 +66,11 @@ const cancelOrder = catchAsync(async (req, res) => {
     data: result,
   });
 });
-const updateUser = catchAsync(async (req, res) => {
-  const result = await orderServices.updateOrder(req.params.id, req.body);
+const updateOrder = catchAsync(async (req, res) => {
+  const result = await orderServices.updateOrder(
+    req.params.id,
+    req.body.status
+  );
   sendResponse(res, {
     success: true,
     statusCode: Status[200],
@@ -82,5 +85,5 @@ export const orderController = {
   getUserOrderById,
   getUsersOrder,
   cancelOrder,
-  updateUser
+  updateOrder,
 };
